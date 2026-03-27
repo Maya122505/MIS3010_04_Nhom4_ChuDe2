@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 
-# 1. TRANG ĐĂNG KÝ TIỆM (Sửa lỗi AttributeError bà vừa gặp)
+def login_shop(request):
+    return render(request, 'tiem/login_shop.html')
+
+# 1. TRANG ĐĂNG KÝ GIAN HÀNG
 def register_tiem(request):
-    # Trang này sẽ hiện giao diện đăng ký 4 bước như Figma
     return render(request, 'tiem/register.html')
 
-# 2. DASHBOARD TIỆM HOA (Thống kê & Yêu cầu thiết kế mới)
+# 1b. TRANG ĐĂNG KÝ GIAN HÀNG (URL RIÊNG)
+def register_shop(request):
+    return render(request, 'tiem/register_shop.html')
+
+
+# 2. DASHBOARD TIỆM HOA
 def dashboard(request):
-    # Dữ liệu giả để bà demo các con số trên Dashboard Tiệm
     context = {
         'stats': {
             'revenue': '15.500.000đ',
@@ -25,7 +31,7 @@ def dashboard(request):
     }
     return render(request, 'tiem/dashboard.html', context)
 
-# 3. QUẢN LÝ ĐƠN HÀNG (Danh sách đơn và cập nhật tiến độ)
+# 3. QUẢN LÝ ĐƠN HÀNG
 def manage_orders(request):
     orders_list = [
         {'id': '9618', 'khach': 'Phạm Hải Nam', 'sp': 'Bó hồng đỏ 50 bông', 'status': 'Đang thực hiện'},
@@ -34,11 +40,30 @@ def manage_orders(request):
     ]
     return render(request, 'tiem/manage_orders.html', {'orders': orders_list})
 
-# 4. GỬI BÁO GIÁ (Khi tiệm ấn nút "Gửi báo giá" cho một yêu cầu)
+# 4. GỬI BÁO GIÁ
 def send_quote(request, req_id):
-    # Truyền req_id sang để biết là đang báo giá cho yêu cầu nào
     return render(request, 'tiem/send_quote.html', {'req_id': req_id})
 
-# 5. HỒ SƠ NĂNG LỰC (Nơi tiệm cập nhật ảnh mẫu sản phẩm)
+# 5. HỒ SƠ NĂNG LỰC
 def profile(request):
     return render(request, 'tiem/profile.html')
+
+# 6. CẬP NHẬT HỒ SƠ NĂNG LỰC
+def profile_edit(request):
+    return render(request, 'tiem/profile_edit.html')
+
+# 7. CHAT TIỆM
+def chat(request):
+    return render(request, 'tiem/chat.html')
+
+# 8. DANH SÁCH ĐỀ XUẤT & BÁO GIÁ
+def quotes(request):
+    return render(request, 'tiem/quotes.html')
+
+# 9. THỐNG KÊ KINH DOANH
+def stats(request):
+    return render(request, 'tiem/stats.html')
+
+# 10. CHI TIẾT YÊU CẦU
+def order_detail(request, order_id):
+    return render(request, 'tiem/order_detail.html', {'order_id': order_id})
