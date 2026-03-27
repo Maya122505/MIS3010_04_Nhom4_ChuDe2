@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="max-w-6xl mx-auto py-12 px-6">
+    <h2 class="text-2xl font-black text-gray-800 mb-10">Theo dõi trạng thái đơn hàng</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-1 space-y-4">
+            <div class="bg-white p-5 rounded-3xl border-2 border-pink-500 shadow-md">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-[10px] font-bold text-gray-400">#ORD-9618</span>
+                    <span class="px-2 py-0.5 bg-yellow-100 text-yellow-600 rounded-full text-[9px] font-bold uppercase">Đang thực hiện</span>
+                </div>
+                <p class="font-bold text-sm text-gray-800">Hoa kỉ yếu - tổng kết bế giảng</p>
+                <p class="text-[10px] text-gray-400">Tiệm hoa: Lavender Studio</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-white rounded-[40px] border shadow-sm p-10">
+            <div class="flex justify-between items-center mb-10 border-b pb-6">
+                <h3 class="font-black text-lg">Chi tiết đơn #ORD-9618</h3>
+                <span class="text-pink-500 font-bold">2.500.000đ</span>
+            </div>
+
+            <div class="space-y-8 relative">
+                <div class="flex items-center space-x-6 relative z-10">
+                    <div class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center text-xs"><i class="fas fa-check"></i></div>
+                    <div><p class="font-bold text-sm">Đặt hàng thành công</p><p class="text-[10px] text-gray-400">01/01/2026 08:05</p></div>
+                </div>
+                <div class="flex items-center space-x-6 relative z-10">
+                    <div class="w-10 h-10 bg-pink-500 text-white rounded-full flex items-center justify-center text-xs shadow-lg shadow-pink-200"><i class="fas fa-truck"></i></div>
+                    <div><p class="font-bold text-sm">Đang vận chuyển</p><p class="text-[10px] text-gray-400">Tài xế đang lấy hàng...</p></div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-50 rounded-3xl p-6 text-center">
+                <p class="text-xs text-gray-400 italic mb-4">Hình ảnh giao hàng thực tế:</p>
+                <img src="{% static 'images/tiemhoa2.jpg' %}" class="w-48 h-48 object-cover rounded-2xl mx-auto border-4 border-white shadow-lg">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

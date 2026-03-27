@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="flex h-screen bg-gray-50">
+    {% include 'tiem/sidebar.html' %}
+    <main class="flex-1 p-8 overflow-y-auto">
+        <h2 class="text-2xl font-black mb-8">Đề xuất phương án thiết kế</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-[32px] border shadow-sm h-fit">
+                <h3 class="text-xs font-black text-pink-500 uppercase tracking-widest mb-6">Yêu cầu từ khách hàng</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b pb-3"><span class="text-gray-400 text-sm">Khách hàng:</span> <span class="font-bold">Người đẹp</span></div>
+                    <div class="flex justify-between border-b pb-3"><span class="text-gray-400 text-sm">Ngân sách:</span> <span class="font-bold">500.000đ</span></div>
+                    <div class="border-b pb-3"><p class="text-gray-400 text-sm mb-1">Ghi chú:</p> <p class="text-sm italic">"Bó hoa hồng pastel cho sinh nhật mẹ..."</p></div>
+                </div>
+            </div>
+
+            <form action="{% url 'vendor_dashboard' %}" class="bg-white p-8 rounded-[32px] border shadow-sm space-y-6">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-2">Ảnh mẫu đề xuất thiết kế</label>
+                    <div class="border-2 border-dashed border-pink-100 rounded-3xl p-8 text-center hover:bg-pink-50 cursor-pointer transition">
+                        <i class="fas fa-upload text-pink-300 text-2xl mb-2"></i>
+                        <p class="text-[10px] text-gray-400">Tải ảnh mẫu bó hoa bạn đề xuất</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-black text-gray-400">CHI PHÍ THIẾT KẾ</label><input type="text" placeholder="450.000" class="w-full p-3 bg-gray-50 rounded-xl outline-none mt-1"></div>
+                    <div><label class="text-[10px] font-black text-gray-400">PHÍ VẬN CHUYỂN</label><input type="text" placeholder="20.000" class="w-full p-3 bg-gray-50 rounded-xl outline-none mt-1"></div>
+                </div>
+                <div><label class="text-[10px] font-black text-gray-400">NỘI DUNG TƯ VẤN</label><textarea class="w-full p-3 bg-gray-50 rounded-xl outline-none mt-1 h-24" placeholder="Mô tả loài hoa, ý nghĩa..."></textarea></div>
+                
+                <button type="submit" class="w-full bg-pink-500 text-white font-bold py-4 rounded-2xl shadow-lg" style="background-color: #F2789F;">Gửi báo giá cho khách</button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}

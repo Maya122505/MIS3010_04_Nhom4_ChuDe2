@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="max-w-2xl mx-auto py-16 px-6 text-center">
+    <div class="bg-white rounded-[40px] p-10 border shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-pink-50 rounded-full opacity-50"></div>
+        
+        <h2 class="text-3xl font-black text-gray-800 mb-2">Đánh giá dịch vụ</h2>
+        <p class="text-gray-400 text-sm mb-10 italic">Chia sẻ trải nghiệm của bạn về dịch vụ thiết kế hoa</p>
+        
+        <div class="flex justify-center space-x-3 text-3xl text-yellow-400 mb-10">
+            <i class="fas fa-star cursor-pointer"></i>
+            <i class="fas fa-star cursor-pointer"></i>
+            <i class="fas fa-star cursor-pointer"></i>
+            <i class="fas fa-star cursor-pointer"></i>
+            <i class="fas fa-star cursor-pointer text-gray-100"></i>
+        </div>
+
+        <textarea placeholder="Hoa rất tươi, thiết kế đúng mẫu yêu cầu, giao hàng nhanh..." 
+                  class="w-full p-6 bg-gray-50 rounded-3xl border-none outline-none focus:ring-2 focus:ring-pink-200 transition-all h-32 mb-8"></textarea>
+        
+        <div class="flex flex-col space-y-4">
+            <button type="button" onclick="location.href='{% url 'home' %}'" class="w-full bg-pink-500 text-white font-bold py-5 rounded-2xl shadow-xl hover:opacity-90 transition transform active:scale-95" style="background-color: #F2789F;">
+                Gửi đánh giá ngay <i class="fas fa-paper-plane ml-2"></i>
+            </button>
+            <a href="{% url 'home' %}" class="text-gray-400 text-sm font-bold hover:text-gray-600 transition">Để sau</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

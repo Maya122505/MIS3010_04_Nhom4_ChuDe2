@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="flex h-screen bg-gray-50">
+    {% include 'tiem/sidebar.html' %}
+    <main class="flex-1 p-8 overflow-y-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-black text-gray-800">Hồ sơ năng lực</h2>
+            <button class="bg-flower-pink text-white px-6 py-2 rounded-xl font-bold text-sm shadow-lg hover:opacity-90 transition" style="background-color: #F2789F;">
+                Lưu thay đổi
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 space-y-6">
+                <div class="bg-white p-8 rounded-[32px] border shadow-sm">
+                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-4 tracking-widest">Logo thương hiệu</label>
+                    <div class="flex items-center space-x-6">
+                        <img src="{% static 'images/tiemhoa1.jpg' %}" class="w-24 h-24 rounded-3xl object-cover border-4 border-pink-50">
+                        <button class="text-xs font-bold text-pink-500 bg-pink-50 px-4 py-2 rounded-lg">Thay đổi ảnh</button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[32px] border shadow-sm">
+                    <label class="block text-[10px] font-black text-gray-400 uppercase mb-4 tracking-widest">Mô tả phong cách & Năng lực</label>
+                    <textarea class="w-full h-40 p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-pink-100 text-sm leading-relaxed text-gray-600">
+Lavender Studio là sự giao thoa tinh tế giữa nét lãng mạn cổ điển Pháp và sự phóng khoáng hiện đại. Chúng tôi tập trung vào việc tạo ra các tác phẩm có chiều sâu, ưu tiên sử dụng các loại hoa theo mùa để đảm bảo độ tươi và màu sắc tự nhiên nhất.
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="md:col-span-1">
+                <div class="bg-white p-8 rounded-[32px] border shadow-sm h-full">
+                    <div class="flex justify-between items-center mb-6">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Album sản phẩm mẫu</label>
+                        <i class="fas fa-plus-circle text-pink-500 cursor-pointer"></i>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <img src="{% static 'images/tiemhoa2.jpg' %}" class="w-full aspect-square object-cover rounded-2xl">
+                        <img src="{% static 'images/tiemhoa3.jpg' %}" class="w-full aspect-square object-cover rounded-2xl">
+                        <div class="w-full aspect-square bg-gray-50 rounded-2xl flex items-center justify-center text-gray-200 border-2 border-dashed">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
