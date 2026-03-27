@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        body { font-family: 'Quicksand', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#E8EDF4] text-gray-700">
+    <div class="min-h-screen flex">
+        <aside class="w-20 bg-white border-r border-gray-100 flex flex-col items-center py-6 gap-6">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                <i class="fa-solid fa-spa text-sm"></i>
+            </div>
+            <nav class="flex flex-col gap-4 text-xs text-gray-500">
+                <a href="{% url 'vendor_dashboard' %}" class="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <a href="{% url 'vendor_profile' %}" class="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-folder-open"></i>
+                </a>
+                <a href="{% url 'vendor_chat' %}" class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#F2789F] text-white shadow">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </a>
+                <a href="{% url 'vendor_quotes' %}" class="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-file-invoice"></i>
+                </a>
+                <a href="{% url 'vendor_orders' %}" class="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <a href="{% url 'vendor_stats' %}" class="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 flex flex-col">
+            <header class="h-16 bg-white border-b border-gray-100 px-6 flex items-center justify-between">
+                <div class="text-sm text-gray-400"></div>
+                <div class="flex items-center gap-4 text-sm">
+                    <button class="relative text-gray-500">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <img id="header-logo" src="{% static 'images/db_logo.jpg' %}" alt="db_logo" class="w-8 h-8 rounded-full object-contain bg-white">
+                        <span class="font-semibold text-gray-700">Lavender Studio</span>
+                    </div>
+                    <a href="{% url 'logout' %}" class="text-gray-400 hover:text-[#F2789F]">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="flex flex-1 min-h-0">
+                <aside class="w-64 bg-white border-r border-gray-100 flex flex-col">
+                    <div class="px-4 py-3 border-b border-gray-100 text-sm font-semibold text-[#F2789F] text-center">Chat</div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 bg-[#F9FAFB] border border-gray-200 rounded-full px-3 py-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
+                            <input type="text" class="bg-transparent outline-none flex-1 text-xs" placeholder="Tìm kiếm khách hàng...">
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto px-3 space-y-2 pb-4">
+                        <button class="w-full flex items-center gap-3 p-3 rounded-2xl bg-[#FBE9F1] text-left">
+                            <img src="{% static 'images/db_ava1.png' %}" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+                            <div class="flex-1">
+                                <div class="text-xs font-semibold text-gray-800">Nguyễn Thị Mai</div>
+                                <div class="text-[10px] text-gray-400">Đã mẫu hoa này còn không ạ?</div>
+                            </div>
+                            <div class="text-[10px] text-gray-300">12:45</div>
+                        </button>
+                        <button class="w-full flex items-center gap-3 p-3 rounded-2xl hover:bg-[#FBE9F1] text-left">
+                            <img src="{% static 'images/db_ava2.png' %}" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+                            <div class="flex-1">
+                                <div class="text-xs font-semibold text-gray-800">Trần Thị Hà</div>
+                                <div class="text-[10px] text-gray-400">Cảm ơn shop nhiều nhé!</div>
+                            </div>
+                            <div class="text-[10px] text-gray-300">Hôm qua</div>
+                        </button>
+                        <button class="w-full flex items-center gap-3 p-3 rounded-2xl hover:bg-[#FBE9F1] text-left">
+                            <img src="{% static 'images/db_ava2.png' %}" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+                            <div class="flex-1">
+                                <div class="text-xs font-semibold text-gray-800">Nguyễn Văn Nam</div>
+                                <div class="text-[10px] text-gray-400">Cho mình hỏi giá bó hồng...</div>
+                            </div>
+                            <div class="text-[10px] text-gray-300">2 ngày trước</div>
+                        </button>
+                    </div>
+                </aside>
+
+                <section class="flex-1 flex flex-col bg-[#E8EDF4]">
+                    <div class="h-12 bg-white border-b border-gray-100 px-5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <img src="{% static 'images/db_ava1.png' %}" alt="Avatar" class="w-7 h-7 rounded-full object-cover">
+                            <div>
+                                <div class="text-xs font-semibold text-gray-800">Nguyễn Thị Mai</div>
+                                <div class="text-[10px] text-green-500">Đang hoạt động</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-circle-info text-gray-300 text-xs"></i>
+                    </div>
+
+                    <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4">
+                        <div class="flex justify-center">
+                            <span class="text-[10px] text-gray-400 bg-white px-3 py-1 rounded-full">Hôm nay</span>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <img src="{% static 'images/db_ava1.png' %}" alt="Avatar" class="w-7 h-7 rounded-full object-cover mt-1">
+                            <div>
+                                <div class="bg-white text-xs text-gray-600 px-4 py-2 rounded-2xl rounded-tl-none max-w-md">
+                                    Chào shop, mình muốn đặt một bó hoa sinh nhật tông hồng pastel vào sáng mai ạ.
+                                </div>
+                                <div class="text-[9px] text-gray-300 mt-1">12:30</div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <div class="bg-[#F2789F] text-white text-xs px-4 py-2 rounded-2xl rounded-tr-none max-w-md">
+                                Chào bạn Mai! Shop nhận được yêu cầu rồi ạ. Bên mình có nhiều mẫu hồng pastel rất xinh.
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <div class="bg-[#F2789F] text-white text-xs px-4 py-2 rounded-2xl rounded-tr-none max-w-md">
+                                Bạn đã có mẫu tham khảo nào chưa ạ?
+                            </div>
+                        </div>
+
+                        <div class="flex justify-start">
+                            <div class="bg-white p-3 rounded-2xl shadow-sm max-w-md">
+                                <img src="{% static 'images/db_anh1.png' %}" alt="Mẫu hoa" class="rounded-xl">
+                                <div class="text-[9px] text-gray-300 mt-2 text-right">12:32</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <img src="{% static 'images/db_ava1.png' %}" alt="Avatar" class="w-7 h-7 rounded-full object-cover mt-1">
+                            <div>
+                                <div class="bg-white text-xs text-gray-600 px-4 py-2 rounded-2xl rounded-tl-none max-w-md">
+                                    Dạ mẫu hoa này còn không ạ?
+                                </div>
+                                <div class="text-[9px] text-gray-300 mt-1">12:45</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <img src="{% static 'images/db_ava1.png' %}" alt="Avatar" class="w-7 h-7 rounded-full object-cover mt-1">
+                            <div class="bg-white text-[10px] text-gray-400 px-3 py-2 rounded-full">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-t border-gray-100 p-4">
+                        <div class="flex items-center gap-3">
+                            <button class="w-8 h-8 rounded-full border border-gray-200 text-gray-400 flex items-center justify-center">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                            <button class="w-8 h-8 rounded-full border border-gray-200 text-gray-400 flex items-center justify-center">
+                                <i class="fa-regular fa-image text-[10px]"></i>
+                            </button>
+                            <div class="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-400">
+                                <input id="chat-input" type="text" class="bg-transparent outline-none w-full text-xs" placeholder="Nhập tin nhắn của bạn...">
+                            </div>
+                            <button id="chat-send" class="bg-[#F2789F] text-white text-xs px-4 py-2 rounded-full">Gửi</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script>
+        const rawProfile = localStorage.getItem('vendor_profile');
+        if (rawProfile) {
+            try {
+                const data = JSON.parse(rawProfile);
+                if (data.logo) {
+                    const headerLogo = document.getElementById('header-logo');
+                    if (headerLogo) headerLogo.src = data.logo;
+                }
+            } catch (err) {}
+        }
+
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+
+        const appendMessage = (text) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex justify-end';
+            wrapper.innerHTML = `<div class="bg-[#F2789F] text-white text-xs px-4 py-2 rounded-2xl rounded-tr-none max-w-md">${text}</div>`;
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        const handleSend = () => {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            appendMessage(text);
+            chatInput.value = '';
+            chatInput.focus();
+        };
+
+        chatSend.addEventListener('click', handleSend);
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+    </script>
+</body>
+</html>
