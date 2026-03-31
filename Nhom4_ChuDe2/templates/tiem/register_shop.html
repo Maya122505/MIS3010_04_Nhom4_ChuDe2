@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký gian hàng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        body { font-family: 'Quicksand', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#E8EDF4] min-h-screen text-gray-700">
+    <nav class="bg-white px-6 md:px-10 py-4 flex items-center justify-between shadow-sm">
+        <a href="#" class="flex items-center gap-2 text-[#F2789F] font-bold text-lg">
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#FBE9F1]">
+                <i class="fa-solid fa-spa text-xs"></i>
+            </span>
+            FlowerHub
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-500">
+            <a href="#" class="hover:text-[#F2789F]">Trang chủ</a>
+            <a href="#" class="hover:text-[#F2789F]">Về chúng tôi</a>
+            <a href="#" class="hover:text-[#F2789F]">Hỗ trợ</a>
+            <a href="{% url 'login_shop' %}" class="bg-[#F2789F] text-white px-4 py-2 rounded-full shadow">
+                Đăng nhập
+            </a>
+        </div>
+        <button class="md:hidden text-gray-500">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <main class="px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <p class="text-[11px] text-[#F2789F] font-semibold">Dành cho chủ cửa hàng</p>
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Đăng ký gian hàng</h1>
+
+            <div class="space-y-5">
+                <section class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-4">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-user text-[10px]"></i>
+                        </span>
+                        Thông tin cơ bản
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block text-gray-500 mb-1">Tên tiệm hoa</label>
+                            <input type="text" value="Lavender Studio" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Địa chỉ cửa hàng</label>
+                            <input type="text" value="05 - Phan Kế Bính - Phường Hòa Minh - Thành phố Đà Nẵng" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Số điện thoại</label>
+                            <input type="text" value="0386889229" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Email liên hệ</label>
+                            <input type="text" value="lavender@gmail.com" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-4">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-file-lines text-[10px]"></i>
+                        </span>
+                        Thông tin pháp lý
+                    </div>
+                    <div class="text-xs space-y-3">
+                        <div>
+                            <label class="block text-gray-500 mb-1">Mã số thuế</label>
+                            <input type="text" placeholder="Nhập mã số thuế doanh nghiệp kinh doanh" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Giấy phép kinh doanh</label>
+                            <label class="w-full h-28 border border-dashed border-gray-300 rounded-xl bg-[#F9FAFB] flex flex-col items-center justify-center text-gray-400 cursor-pointer">
+                                <i class="fa-regular fa-image text-lg mb-2"></i>
+                                <span>Nhấn để tải lên hoặc kéo thả</span>
+                                <span class="text-[10px] text-gray-300">JPG, PNG, PDF tối đa 5MB</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-4">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-image text-[10px]"></i>
+                        </span>
+                        Hồ sơ năng lực
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block text-gray-500 mb-1">Ảnh sản phẩm mẫu</label>
+                            <div class="grid grid-cols-4 gap-3">
+                                <div class="h-16 rounded-xl bg-[#F9FAFB] border border-gray-200 flex items-center justify-center text-gray-300">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                                <div class="h-16 rounded-xl bg-[#F9FAFB] border border-gray-200 flex items-center justify-center text-gray-300">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                                <div class="h-16 rounded-xl bg-[#F9FAFB] border border-gray-200 flex items-center justify-center text-gray-300">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                                <div class="h-16 rounded-xl bg-[#F9FAFB] border border-gray-200 flex items-center justify-center text-gray-300">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Mô tả ngắn</label>
+                            <textarea rows="3" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100" placeholder="Giới thiệu về phong cách cắm hoa, kinh nghiệm và cam kết chất lượng của tiệm."></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-4">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-tag text-[10px]"></i>
+                        </span>
+                        Danh mục thế mạnh
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa cưới
+                        </label>
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa sự kiện
+                        </label>
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa sinh nhật
+                        </label>
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa khai trương
+                        </label>
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa bó/lẵng
+                        </label>
+                        <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
+                            <input type="checkbox" class="accent-pink-500">
+                            Hoa định kỳ
+                        </label>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-4">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-building-columns text-[10px]"></i>
+                        </span>
+                        Thông tin tài khoản ngân hàng
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block text-gray-500 mb-1">Tên chủ tài khoản</label>
+                            <input type="text" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Số tài khoản</label>
+                            <input type="text" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Tên ngân hàng</label>
+                            <input type="text" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-pink-100">
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 mb-1">Mã QR</label>
+                            <label class="w-full h-20 border border-dashed border-gray-300 rounded-xl bg-[#F9FAFB] flex items-center justify-center text-gray-400 cursor-pointer">
+                                <i class="fa-regular fa-image text-lg"></i>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <button id="submit-register" type="button" class="w-full bg-[#F2789F] text-white rounded-xl py-3 font-semibold shadow-md hover:opacity-90 transition">
+                    Gửi hồ sơ đăng ký
+                </button>
+            </div>
+        </div>
+    </main>
+    <div id="success-overlay" class="hidden fixed inset-0 bg-black/20 flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-xl px-10 py-8 text-center min-w-[280px]">
+            <div class="w-12 h-12 rounded-full bg-[#E9F9F0] text-[#40B37A] flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <div class="text-sm font-semibold text-gray-800">Gửi thành công</div>
+        </div>
+    </div>
+    <script>
+        const submitBtn = document.getElementById('submit-register');
+        const overlay = document.getElementById('success-overlay');
+        submitBtn.addEventListener('click', () => {
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                location.href = "{% url 'login_shop' %}";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

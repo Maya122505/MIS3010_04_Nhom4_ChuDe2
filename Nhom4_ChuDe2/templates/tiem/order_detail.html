@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết yêu cầu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        body { font-family: 'Quicksand', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#E8EDF4] text-gray-700">
+    <div class="min-h-screen flex">
+        <aside class="w-64 bg-white border-r border-gray-100 flex flex-col">
+            <div class="px-6 py-6">
+                <a href="#" class="flex items-center gap-2 text-[#F2789F] font-bold text-lg">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#FBE9F1]">
+                        <i class="fa-solid fa-spa text-xs"></i>
+                    </span>
+                    FlowerHub
+                </a>
+            </div>
+            <nav class="px-4 flex-1 space-y-2 text-sm">
+                <a href="{% url 'vendor_dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-house text-xs"></i> Trang chủ
+                </a>
+                <a href="{% url 'vendor_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-folder-open text-xs"></i> Quản lý hồ sơ
+                </a>
+                <a href="{% url 'vendor_chat' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-comment-dots text-xs"></i> Chat
+                </a>
+                <a href="{% url 'vendor_quotes' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F2789F] text-white shadow">
+                    <i class="fa-solid fa-file-invoice text-xs"></i> Đề xuất và báo giá
+                </a>
+                <a href="{% url 'vendor_orders' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i> Cập nhật tiến độ
+                </a>
+                <a href="{% url 'vendor_stats' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-chart-line text-xs"></i> Thống kê
+                </a>
+            </nav>
+        </aside>
+
+        <main class="flex-1">
+            <header class="h-16 bg-white border-b border-gray-100 px-8 flex items-center justify-between">
+                <div class="text-sm text-gray-400"></div>
+                <div class="flex items-center gap-4 text-sm">
+                    <button class="relative text-gray-500">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <img id="header-logo" src="{% static 'images/db_logo.jpg' %}" alt="db_logo" class="w-8 h-8 rounded-full object-contain bg-white">
+                        <span class="font-semibold text-gray-700">Lavender Studio</span>
+                    </div>
+                    <a href="{% url 'logout' %}" class="text-gray-400 hover:text-[#F2789F]">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+
+            <section class="px-8 py-6">
+                <div class="bg-white rounded-2xl shadow-sm p-6 max-w-3xl">
+                    <h1 class="text-base font-semibold text-gray-800 mb-4">Chi tiết yêu cầu</h1>
+
+                    <div class="border border-gray-100 rounded-xl px-4 py-3 mb-5">
+                        <p class="text-[11px] text-[#F2789F] mb-1">Khách hàng</p>
+                        <p class="text-sm font-semibold text-gray-800">Người đẹp, 0377882661</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Dịp sử dụng</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">Sinh nhật</div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Ngân sách dự kiến (VND)</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">500.000</div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Thời gian hoàn thành</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">23/03/2026</div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Phong cách</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">Tự nhiên</div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Ghi chú & Yêu cầu cụ thể</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">
+                                Ví dụ: Thêm nơ hồng, bó lá bạch đàn, đính kèm thiệp chúc mừng...
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">Địa chỉ giao hàng</label>
+                            <div class="bg-[#F9FAFB] border border-gray-100 rounded-lg px-3 py-2 text-gray-600">
+                                7 An Thượng 24, P. Mỹ An, Q. Ngũ Hành Sơn, TP Đà Nẵng
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-6">
+                        <button type="button" onclick="location.href='{% url 'vendor_quotes' %}'" class="bg-[#F2789F] text-white text-xs px-6 py-2 rounded-full">Đóng</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        const rawProfile = localStorage.getItem('vendor_profile');
+        if (rawProfile) {
+            try {
+                const data = JSON.parse(rawProfile);
+                if (data.logo) {
+                    const headerLogo = document.getElementById('header-logo');
+                    if (headerLogo) headerLogo.src = data.logo;
+                }
+            } catch (err) {}
+        }
+    </script>
+</body>
+</html>

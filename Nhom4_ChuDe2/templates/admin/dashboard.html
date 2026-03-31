@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="flex h-screen bg-[#F8FAF7] overflow-hidden">
+    <div class="w-64 flex-shrink-0">
+        {% include 'admin/sidebar.html' %}
+    </div>
+
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+
+        <header class="h-16 bg-white px-8 flex justify-between items-center border-b border-gray-100 flex-shrink-0">
+            <div class="flex items-center space-x-4">
+                <h2 class="text-lg font-extrabold text-[#1E293B]">Thống kê hoạt động</h2>
+                <div class="h-5 w-[1px] bg-gray-200 mx-2"></div>
+            </div>
+
+            <div class="flex items-center space-x-3 bg-white px-4 py-1.5 rounded-xl border border-gray-50 shadow-sm">
+                <div class="w-7 h-7 rounded-full bg-[#F2789F] text-white flex items-center justify-center text-[10px] font-bold">AD</div>
+                <span class="text-[12px] font-bold text-gray-700">Quản trị viên</span>
+                <i class="fas fa-sign-out-alt text-[#F2789F] ml-2 text-xs"></i>
+            </div>
+        </header>
+
+        <div class="flex-1 p-8 space-y-8 overflow-y-auto">
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-[32px] border border-gray-50 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-[#FFF0F5] rounded-2xl flex items-center justify-center text-[#F2789F]">
+                            <i class="fas fa-wallet text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-emerald-500 font-bold bg-emerald-50 px-2 py-1 rounded-lg">+12.5% ↗</span>
+                    </div>
+                    <p class="text-[11px] font-black text-gray-300 uppercase tracking-widest mb-1">Tổng doanh thu</p>
+                    <p class="text-2xl font-black text-slate-800">{{ total_revenue }}</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-[32px] border border-gray-50 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-[#E0F2FE] rounded-2xl flex items-center justify-center text-[#0EA5E9]">
+                            <i class="fas fa-file-invoice text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-emerald-500 font-bold bg-emerald-50 px-2 py-1 rounded-lg">+8.2% ↗</span>
+                    </div>
+                    <p class="text-[11px] font-black text-gray-300 uppercase tracking-widest mb-1">Tổng đơn hàng</p>
+                    <p class="text-2xl font-black text-slate-800">{{ total_orders }}</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-[32px] border border-gray-50 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-[#F5F3FF] rounded-2xl flex items-center justify-center text-[#8B5CF6]">
+                            <i class="fas fa-user-plus text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-red-400 font-bold bg-red-50 px-2 py-1 rounded-lg">-2.4% ↘</span>
+                    </div>
+                    <p class="text-[11px] font-black text-gray-300 uppercase tracking-widest mb-1">Người dùng mới</p>
+                    <p class="text-2xl font-black text-slate-800">{{ new_users }}</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-3 rounded-3xl border border-gray-50 shadow-sm flex justify-between items-center">
+                <div class="flex bg-gray-50 p-1.5 rounded-2xl space-x-1">
+                    <a href="?tab=doanh_thu" class="px-8 py-2.5 rounded-xl font-bold text-sm transition {% if active_tab == 'doanh_thu' or not active_tab %} bg-white text-[#F2789F] shadow-sm {% else %} text-gray-400 hover:text-gray-500 {% endif %}">Doanh thu</a>
+                    <a href="?tab=don_hang" class="px-8 py-2.5 rounded-xl font-bold text-sm transition {% if active_tab == 'don_hang' %} bg-white text-[#F2789F] shadow-sm {% else %} text-gray-400 hover:text-gray-500 {% endif %}">Số đơn hàng</a>
+                    <a href="?tab=nguoi_dung" class="px-8 py-2.5 rounded-xl font-bold text-sm transition {% if active_tab == 'nguoi_dung' %} bg-white text-[#F2789F] shadow-sm {% else %} text-gray-400 hover:text-gray-500 {% endif %}">Người dùng</a>
+                </div>
+                <div class="bg-white border border-gray-100 px-5 py-2.5 rounded-2xl flex items-center space-x-3 cursor-pointer hover:bg-gray-50 transition">
+                    <i class="far fa-calendar text-gray-300"></i>
+                    <span class="text-xs font-bold text-gray-600">01/01/2026 - 31/01/2026</span>
+                    <i class="fas fa-chevron-down text-[10px] text-gray-300"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-[40px] border border-gray-50 shadow-sm">
+                <div class="mb-10">
+                    <h3 class="text-xl font-black text-slate-800">
+                        {% if active_tab == 'don_hang' %}Thống kê Đơn hàng{% elif active_tab == 'nguoi_dung' %}Tăng trưởng Người dùng{% else %}Biểu đồ Doanh thu{% endif %}
+                        <span class="text-xs text-emerald-500 ml-3 font-bold bg-emerald-50 px-2 py-1 rounded-lg">+14.2% so với tháng trước</span>
+                    </h3>
+                </div>
+
+                <div class="h-64 flex items-end justify-between px-4 border-b border-gray-100 pb-2 relative">
+                    {% if active_tab == 'don_hang' or active_tab == 'nguoi_dung' %}
+                        <svg class="w-full h-full absolute inset-0 px-4" viewBox="0 0 1000 200" preserveAspectRatio="none">
+                            <path d="M0,150 Q150,100 300,120 T600,80 T1000,50" fill="none" stroke="#F2789F" stroke-width="4" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="gradChart" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#F2789F;stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:#F2789F;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M0,150 Q150,100 300,120 T600,80 T1000,50 L1000,200 L0,200 Z" fill="url(#gradChart)" />
+                        </svg>
+                    {% else %}
+                        <div class="w-10 bg-[#F2789F]/20 rounded-t-xl h-24 hover:bg-[#F2789F]/40 transition-all cursor-pointer"></div>
+                        <div class="w-10 bg-[#F2789F]/40 rounded-t-xl h-40 hover:bg-[#F2789F]/60 transition-all cursor-pointer"></div>
+                        <div class="w-10 bg-[#F2789F]/30 rounded-t-xl h-32 hover:bg-[#F2789F]/50 transition-all cursor-pointer"></div>
+                        <div class="w-10 bg-[#F2789F] rounded-t-xl h-56 shadow-lg shadow-pink-100 relative group">
+                            <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Cao nhất</div>
+                        </div>
+                        <div class="w-10 bg-[#F2789F]/50 rounded-t-xl h-44 hover:bg-[#F2789F]/70 transition-all cursor-pointer"></div>
+                        <div class="w-10 bg-[#F2789F]/70 rounded-t-xl h-48 hover:bg-[#F2789F]/90 transition-all cursor-pointer"></div>
+                        <div class="w-10 bg-[#F2789F]/40 rounded-t-xl h-36 hover:bg-[#F2789F]/60 transition-all cursor-pointer"></div>
+                    {% endif %}
+                </div>
+
+                <div class="flex justify-between px-4 text-[10px] text-gray-300 font-black uppercase tracking-[0.2em] mt-6">
+                    <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-[40px] border border-gray-50 shadow-sm">
+                    <h3 class="text-xs font-black text-gray-300 uppercase tracking-widest mb-8 border-b border-gray-50 pb-4">Top gian hàng hiệu quả</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between group cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://ui-avatars.com/api/?name=MH&background=F2789F&color=fff" class="w-12 h-12 rounded-2xl shadow-sm">
+                                <div>
+                                    <p class="font-bold text-slate-800 text-sm">Tiệm Hoa Mùa Hạ</p>
+                                    <p class="text-[10px] text-gray-300 font-bold uppercase tracking-tight">Quận 1, TP.HCM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm font-black text-[#F2789F]">★ 4.9</span>
+                                <p class="text-[9px] text-gray-400 font-bold">128 đơn</p>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[40px] border border-gray-50 shadow-sm">
+                    <h3 class="text-xs font-black text-gray-300 uppercase tracking-widest mb-8 border-b border-gray-50 pb-4">Hoạt động hệ thống</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-emerald-400 rounded-full mt-1.5 shadow-sm shadow-emerald-100"></div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-700">Đơn hàng #1294 đã hoàn thành</p>
+                                <p class="text-[10px] text-gray-300 font-bold italic uppercase">2 phút trước</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-pink-400 rounded-full mt-1.5 shadow-sm shadow-pink-100"></div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-700">Người dùng mới đăng ký: @linh_flower</p>
+                                <p class="text-[10px] text-gray-300 font-bold italic uppercase">15 phút trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

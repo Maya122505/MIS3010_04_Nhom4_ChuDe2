@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="flex h-screen bg-[#F8FAF7] overflow-hidden">
+    <div class="w-64 flex-shrink-0 border-r border-gray-50 bg-white">
+        {% include 'admin/sidebar.html' %}
+    </div>
+
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+
+        <header class="h-16 bg-white px-8 flex justify-between items-center border-b border-gray-100 flex-shrink-0">
+            <div class="flex items-center space-x-4">
+                <h2 class="text-lg font-extrabold text-[#1E293B]">Quản lý người dùng</h2>
+                <div class="h-5 w-[1px] bg-gray-200 mx-2"></div>
+            </div>
+
+            <div class="flex items-center space-x-3 bg-white px-4 py-1.5 rounded-xl border border-gray-50 shadow-sm">
+                <div class="w-7 h-7 rounded-full bg-[#F2789F] text-white flex items-center justify-center text-[10px] font-bold shadow-sm">AD</div>
+                <span class="text-[12px] font-bold text-gray-700">Quản trị viên</span>
+                <i class="fas fa-sign-out-alt text-[#F2789F] ml-2 text-xs cursor-pointer hover:opacity-70"></i>
+            </div>
+        </header>
+
+        <div class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-[1200px] mx-auto space-y-6">
+
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-50 flex items-center space-x-4">
+                    <div class="relative flex-1">
+                        <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 text-sm"></i>
+                        <input type="text" placeholder="Tìm kiếm tên, email..."
+                               class="w-full pl-12 pr-4 py-2.5 bg-[#F8F9FA] border-none rounded-xl text-xs focus:ring-1 focus:ring-pink-100 outline-none">
+                    </div>
+                    <div class="flex space-x-2">
+                        <select class="bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-[11px] font-bold text-gray-400 outline-none cursor-pointer hover:bg-gray-50 transition">
+                            <option>Tất cả vai trò</option>
+                        </select>
+                        <select class="bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-[11px] font-bold text-gray-400 outline-none cursor-pointer hover:bg-gray-50 transition">
+                            <option>Tất cả trạng thái</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[32px] shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50/50 text-[10px] text-gray-400 uppercase tracking-widest font-black">
+                                <tr>
+                                    <th class="px-8 py-5">Tên người dùng</th>
+                                    <th class="px-8 py-5">Email</th>
+                                    <th class="px-8 py-5 text-center">Vai trò</th>
+                                    <th class="px-8 py-5 text-center">Trạng thái</th>
+                                    <th class="px-8 py-5 text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50">
+                                {% for user in users %}
+                                <tr class="group hover:bg-gray-50/30 transition cursor-pointer"
+                                    onclick="openModal('{{ user.ten }}', '{{ user.role }}')">
+                                    <td class="px-8 py-4 flex items-center space-x-4">
+                                        <div class="w-10 h-10 rounded-full bg-pink-50 text-[#F2789F] flex items-center justify-center font-bold text-[11px] uppercase border border-pink-100">
+                                            {{ user.ten|slice:":2" }}
+                                        </div>
+                                        <span class="font-extrabold text-[#1E293B] text-sm">{{ user.ten }}</span>
+                                    </td>
+                                    <td class="px-8 py-4 text-[12px] text-gray-400 font-medium">{{ user.email }}</td>
+                                    <td class="px-8 py-4 text-center">
+                                        <span class="inline-flex items-center justify-center w-28 py-2 text-white text-[9px] font-black uppercase rounded-full shadow-lg shadow-pink-100/20 {% if user.role == 'Khách hàng' %}bg-[#0055AA]{% else %}bg-[#F2789F]{% endif %}">
+                                            {{ user.role }}
+                                        </span>
+                                    </td>
+                                    <td class="px-8 py-4 text-center">
+                                        <span class="text-xs font-bold text-[#10B981] whitespace-nowrap">Hoạt động</span>
+                                    </td>
+                                    <td class="px-8 py-4 text-right space-x-6">
+                                        <i class="far fa-eye text-lg text-gray-200 hover:text-gray-400 transition"></i>
+                                        <i class="fas fa-trash-alt text-lg text-[#1E293B] hover:text-red-500 transition"></i>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="px-10 py-8 border-t border-gray-50 flex justify-between items-center bg-white">
+                        <p class="text-[11px] text-gray-300 font-bold uppercase tracking-[0.2em]">
+                            Hiển thị 1 - 4 trên 128 người dùng
+                        </p>
+                        <div class="flex items-center space-x-8 mr-4">
+                            <button class="w-9 h-9 rounded-full bg-[#F2789F] text-white font-bold text-[13px] shadow-lg shadow-pink-200/50 flex items-center justify-center transition-all hover:scale-110">1</button>
+                            <button class="text-gray-400 font-bold text-[13px] hover:text-[#F2789F] transition-colors">2</button>
+                            <span class="text-gray-200 font-bold tracking-[0.3em] px-1">...</span>
+                            <button class="text-gray-400 font-bold text-[13px] hover:text-[#F2789F] transition-colors">32</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% include 'admin/user_detail_modal.html' %}
+{% endblock %}

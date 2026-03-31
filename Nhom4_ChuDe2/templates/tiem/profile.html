@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ năng lực</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        body { font-family: 'Quicksand', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#E8EDF4] text-gray-700">
+    <div class="min-h-screen flex">
+        <aside class="w-64 bg-white border-r border-gray-100 flex flex-col">
+            <div class="px-6 py-6">
+                <a href="#" class="flex items-center gap-2 text-[#F2789F] font-bold text-lg">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#FBE9F1]">
+                        <i class="fa-solid fa-spa text-xs"></i>
+                    </span>
+                    FlowerHub
+                </a>
+            </div>
+            <nav class="px-4 flex-1 space-y-2 text-sm">
+                <a href="{% url 'vendor_dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-house text-xs"></i> Trang chủ
+                </a>
+                <a href="{% url 'vendor_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F2789F] text-white shadow">
+                    <i class="fa-solid fa-folder-open text-xs"></i> Quản lý hồ sơ
+                </a>
+                <a href="{% url 'vendor_chat' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-comment-dots text-xs"></i> Chat
+                </a>
+                <a href="{% url 'vendor_quotes' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-file-invoice text-xs"></i> Đề xuất và báo giá
+                </a>
+                <a href="{% url 'vendor_orders' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i> Cập nhật tiến độ
+                </a>
+                <a href="{% url 'vendor_stats' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-[#FBE9F1]">
+                    <i class="fa-solid fa-chart-line text-xs"></i> Thống kê
+                </a>
+            </nav>
+        </aside>
+
+        <main class="flex-1">
+            <header class="h-16 bg-white border-b border-gray-100 px-8 flex items-center justify-between">
+                <div class="text-sm text-gray-400"></div>
+                <div class="flex items-center gap-4 text-sm">
+                    <button class="relative text-gray-500">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <img id="header-logo" src="{% static 'images/db_logo.jpg' %}" alt="db_logo" class="w-8 h-8 rounded-full object-contain bg-white">
+                        <span class="font-semibold text-gray-700">Lavender Studio</span>
+                    </div>
+                    <a href="{% url 'logout' %}" class="text-gray-400 hover:text-[#F2789F]">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+
+            <section class="px-8 py-6 space-y-5">
+                <h1 class="text-lg font-semibold text-gray-800">Hồ sơ năng lực</h1>
+
+                <div class="bg-white rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <img id="profile-logo" src="{% static 'images/db_logo.jpg' %}" alt="Lavender Studio" class="w-14 h-14 rounded-full object-cover">
+                        <div>
+                            <p class="text-sm text-gray-400"> </p>
+                            <p id="profile-name" class="text-base font-semibold text-gray-800">Lavender Studio</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="location.href='{% url 'vendor_profile_edit' %}'" class="flex items-center gap-2 bg-[#F2789F] text-white px-5 py-2 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-pen text-[10px]"></i>
+                        Cập nhật
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 shadow-sm">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                            <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
+                        </span>
+                        <h2 class="text-sm font-semibold text-gray-800">Phong cách thiết kế</h2>
+                    </div>
+                    <p id="profile-desc" class="text-sm text-gray-500 leading-relaxed">
+                        Phong cách chủ đạo của Lavender Studio là sự giao thoa tinh tế giữa nét lãng mạn cổ điển Pháp
+                        và sự phóng khoáng hiện đại. Chúng tôi tập trung vào việc tạo ra các tác phẩm có chiều sâu,
+                        ưu tiên sử dụng các loại hoa theo mùa để đảm bảo độ tươi và màu sắc tự nhiên nhất. Mỗi bó hoa
+                        là một câu chuyện tình yêu được kể qua ngôn ngữ của sắc màu.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FBE9F1] text-[#F2789F]">
+                                <i class="fa-solid fa-images text-[10px]"></i>
+                            </span>
+                            <h2 class="text-sm font-semibold text-gray-800">Album sản phẩm mẫu</h2>
+                        </div>
+                        <a href="#" class="text-xs text-[#F2789F]">Xem tất cả</a>
+                    </div>
+                    <div id="profile-album" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <img src="{% static 'images/db_anh1.png' %}" alt="Mẫu 1" class="w-full aspect-square rounded-xl object-cover">
+                        <img src="{% static 'images/db_anh2.png' %}" alt="Mẫu 2" class="w-full aspect-square rounded-xl object-cover">
+                        <img src="{% static 'images/tiemhoa2.jpg' %}" alt="Mẫu 3" class="w-full aspect-square rounded-xl object-cover">
+                        <img src="{% static 'images/tiemhoa3.jpg' %}" alt="Mẫu 4" class="w-full aspect-square rounded-xl object-cover">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        const STORAGE_KEY = 'vendor_profile';
+        const logoEl = document.getElementById('profile-logo');
+        const nameEl = document.getElementById('profile-name');
+        const descEl = document.getElementById('profile-desc');
+        const albumEl = document.getElementById('profile-album');
+        const headerLogoEl = document.getElementById('header-logo');
+
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            try {
+                const data = JSON.parse(raw);
+                if (data.logo) {
+                    logoEl.src = data.logo;
+                    headerLogoEl.src = data.logo;
+                }
+                if (data.name) nameEl.textContent = data.name;
+                if (data.description) descEl.textContent = data.description;
+                if (Array.isArray(data.album) && data.album.length) {
+                    albumEl.innerHTML = '';
+                    data.album.forEach((src, idx) => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = `Mẫu ${idx + 1}`;
+                        img.className = 'w-full aspect-square rounded-xl object-cover';
+                        albumEl.appendChild(img);
+                    });
+                }
+            } catch (err) {
+                // ignore invalid storage
+            }
+        }
+    </script>
+</body>
+</html>
